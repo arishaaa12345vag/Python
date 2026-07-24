@@ -1,1 +1,19 @@
+import json
+def get_articles():
+    with open('articles.json','r',encoding = "utf-8") as ar_j :
+        articles_data = json.load(ar_j)
+    return articles_data
 
+def save_article(name, text):
+    with open("articles.json", "r",encoding = "utf-8") as art:
+        file = json.load(art)
+    file[name]= text
+    with open("articles.json", "w",encoding = "utf-8") as art:
+    	json.dump(file,art,ensure_ascii=False)
+
+def delete_article(name):
+    with open("articles.json","r",encoding = "utf-8") as art:
+        article = json.load(art)
+    del article[name]
+    with open("articles.json","w",encoding = "utf-8") as art:
+        json.dump(article,art,ensure_ascii=False)
